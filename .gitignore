@@ -1,0 +1,7 @@
+/target
+*.pdb
+.DS_Store
+*.swp
+
+# Ignore Sublime Text project files
+*.sublime-*

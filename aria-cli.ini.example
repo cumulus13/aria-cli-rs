@@ -1,0 +1,20 @@
+; aria-cli.ini — example config file
+;
+; aria-cli auto-discovers this file (via the `config-get` crate) in, on Unix:
+;   ~/aria-cli/aria-cli.ini
+;   ~/.config/aria-cli/aria-cli.ini
+;   ~/.config/aria-cli.ini
+;   ~/aria-cli.ini
+;   ./aria-cli.ini
+; and on Windows:
+;   %APPDATA%\aria-cli\aria-cli.ini
+;   %USERPROFILE%\aria-cli\aria-cli.ini
+;   %APPDATA%\aria-cli.ini
+;   %USERPROFILE%\aria-cli.ini
+;   .\aria-cli.ini
+;
+; --rpc on the command line always takes precedence over this file.
+
+[main]
+host = 127.0.0.1
+port = 6800
