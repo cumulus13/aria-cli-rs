@@ -60,15 +60,15 @@ jobs:
 
       - name: Install cross
         if: matrix.use_cross
-        run: cargo install cross --git https://github.com/cross-rs/cross --locked
+        run: cargo install cross --git https://github.com/cross-rs/cross 
 
       - name: Build (cargo)
         if: ${{ !matrix.use_cross }}
-        run: cargo build --release --locked --target ${{ matrix.target }}
+        run: cargo build --release  --target ${{ matrix.target }}
 
       - name: Build (cross)
         if: matrix.use_cross
-        run: cross build --release --locked --target ${{ matrix.target }}
+        run: cross build --release  --target ${{ matrix.target }}
 
       - name: Package (Unix)
         if: runner.os != 'Windows'
