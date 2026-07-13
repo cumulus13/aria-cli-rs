@@ -63,7 +63,7 @@ impl Aria2Client {
     fn call_best_effort(&self, method: &str, params: Vec<Value>) -> Result<bool> {
         match self.call(method, params) {
             Ok(_) => Ok(true),
-            Err(AriaError::Rpc { code, .. }) if code == 1 => Ok(false),
+            Err(AriaError::Rpc { code: 1, .. }) => Ok(false),
             Err(e) => Err(e),
         }
     }

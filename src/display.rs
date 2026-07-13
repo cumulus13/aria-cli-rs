@@ -13,8 +13,6 @@ pub const CYAN: &str = "#00FFFF";
 pub const RED: &str = "#FF5555";
 pub const GREEN: &str = "#55FF55";
 pub const MAGENTA: &str = "#FF55FF";
-pub const BLUE: &str = "#5599FF";
-pub const ORANGE: &str = "#FFAA00";
 pub const GREY: &str = "#AAAAAA";
 
 pub fn hex(text: &str, fg: &str) -> String {

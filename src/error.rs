@@ -15,17 +15,8 @@ pub enum AriaError {
     #[error("aria2 RPC error (code {code}): {message}")]
     Rpc { code: i64, message: String },
 
-    #[error("invalid URL: {0}")]
-    InvalidUrl(String),
-
     #[error("no valid URLs to add")]
     NoValidUrls,
-
-    #[error("download not found: {0}")]
-    NotFound(String),
-
-    #[error("clipboard error: {0}")]
-    Clipboard(String),
 
     #[error("I/O error: {0}")]
     Io(#[from] std::io::Error),

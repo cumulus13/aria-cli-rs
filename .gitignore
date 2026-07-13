@@ -5,3 +5,6 @@
 
 # Ignore Sublime Text project files
 *.sublime-*
+
+# Added entries (1 items)
+downloads/
