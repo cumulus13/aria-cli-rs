@@ -63,11 +63,11 @@ jobs:
       - run: cargo test --verbose
 
   msrv:
-    name: MSRV check (1.85)
+    name: MSRV check (1.86)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - name: Install MSRV toolchain
-        uses: dtolnay/rust-toolchain@1.85
+        uses: dtolnay/rust-toolchain@1.86
       - uses: Swatinem/rust-cache@v2
-      - run: cargo check --all-targets
+      - run: cargo check --all-targets --locked

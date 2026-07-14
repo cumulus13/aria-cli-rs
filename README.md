@@ -49,7 +49,8 @@ cargo build --release
 # binary at target/release/aria-cli (aria-cli.exe on Windows)
 ```
 
-**MSRV:** Rust 1.85+ (required by `clap-version-flag`'s 2024 edition).
+**MSRV:** Rust 1.86+ (the binding floor is `idna`/`url`'s `icu_*` backend, not `clap-version-flag`'s
+2024-edition dependencies, which Cargo resolves to older, edition-2021-compatible versions on request).
 
 ## Quick start
 
@@ -102,6 +103,13 @@ port = 6800
 ```
 
 ## Development
+
+`Cargo.lock` is committed (this is a binary, not a library) so CI's MSRV job checks against
+pinned dependency versions rather than silently re-resolving to "latest compatible" on every
+run — that re-resolution is exactly what broke the MSRV job originally, when a transitive
+dependency (`icu_*`, pulled in by `idna`/`url`) bumped its own minimum Rust version. Run
+`cargo update` deliberately and re-verify `cargo check --locked` against the MSRV toolchain
+before committing an updated lockfile.
 
 ```bash
 cargo build

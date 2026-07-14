@@ -1,8 +1,8 @@
 [package]
 name = "aria-cli"
-version = "2.0.3"
+version = "2.0.4"
 edition = "2021"
-rust-version = "1.85"
+rust-version = "1.86"
 authors = ["Hadi Cahyadi <cumulus13@gmail.com>"]
 description = "A robust, professional CLI to send URLs to Aria2 (with headers/cookies), monitor, and manage downloads via JSON-RPC."
 homepage = "https://github.com/cumulus13/aria-cli-rs"
@@ -43,7 +43,11 @@ url = "2"
 crossterm = "0.28"
 
 # --- Clipboard ("c" URL shortcut) ---
-arboard = "3"
+# default-features off: we only paste text, and arboard's default "image-data"
+# feature drags in the `image` crate (needs rustc 1.88+) for no benefit here.
+# "wayland-data-control" keeps clipboard access working on pure-Wayland Linux
+# (no XWayland) instead of silently falling back to X11-only support.
+arboard = { version = "3", default-features = false, features = ["wayland-data-control"] }
 
 # --- Ctrl+C handling for monitor / interactive loops ---
 ctrlc = "3"
