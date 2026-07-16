@@ -8,3 +8,14 @@
 
 # Added entries (1 items)
 downloads/
+
+# Added entries (2 items)
+tmp*
+src/tmp*
+
+# Added entries (2 items)
+*.bak
+*.exe
+
+# Added entries (1 items)
+*.ini

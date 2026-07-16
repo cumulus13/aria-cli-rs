@@ -1,6 +1,6 @@
 [package]
 name = "aria-cli"
-version = "2.0.5"
+version = "2.0.6"
 edition = "2021"
 rust-version = "1.86"
 authors = ["Hadi Cahyadi <cumulus13@gmail.com>"]
@@ -29,6 +29,10 @@ make_colors = "1.0.2"
 
 # --- Config file discovery/reading (.env/.ini/.toml/.json/.yml auto-discovery) ---
 config-get = "0.1.7"
+# Direct dep (not just transitive via config-get) so config.rs can detect and log
+# when dirs::home_dir() fails to resolve -- the concrete cause behind config only
+# ever being found in the current directory in stripped-down/service environments.
+dirs = "5"
 
 # --- ASCII charts for live monitor ---
 rasciichart = "0.2.17"

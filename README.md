@@ -89,10 +89,11 @@ By default aria-cli talks to `http://222.222.222.5:6800/jsonrpc` (matching the o
 placeholder default) unless overridden by:
 
 1. `--rpc <URL>` on the command line (highest priority)
-2. `[main] host` / `[main] port` in an auto-discovered `aria-cli.ini` (see
+2. `--config <PATH>` / `$ARIA_CLI_CONFIG` — load an exact file, skipping auto-discovery entirely
+3. `[main] host` / `[main] port` in an auto-discovered `aria-cli.ini` (see
    [`aria-cli.ini.example`](aria-cli.ini.example) for search paths and format; `.env`, `.toml`,
    `.json`, and `.yml` are also supported via `config-get`)
-3. Built-in defaults
+4. Built-in defaults
 
 For a typical local aria2c setup, drop this at `~/.config/aria-cli/aria-cli.ini`:
 
@@ -101,6 +102,17 @@ For a typical local aria2c setup, drop this at `~/.config/aria-cli/aria-cli.ini`
 host = 127.0.0.1
 port = 6800
 ```
+
+**If the config file only seems to load when it's in the current directory:** that almost
+always means `dirs::home_dir()` can't resolve a home directory in your environment (unset
+`HOME` on Unix, or `USERPROFILE`/`APPDATA` on Windows — common in containers, services, and
+some minimal shells), which silently drops every home/`.config`-relative search path and
+leaves only the current directory. Two ways to confirm and work around it:
+
+- Run with `--debug`: aria-cli logs every path it checked, in order, and flags explicitly
+  whether `dirs::home_dir()` came back empty.
+- Use `--config /exact/path/to/aria-cli.ini` (or `$ARIA_CLI_CONFIG`) to bypass discovery
+  entirely — this always works regardless of the environment.
 
 ## Development
 

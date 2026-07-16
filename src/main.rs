@@ -77,7 +77,7 @@ fn main() -> ExitCode {
 }
 
 fn run(cli: Cli) -> error::Result<()> {
-    let file_cfg = AriaConfig::load();
+    let file_cfg = AriaConfig::load(cli.config.as_deref());
     let rpc_url = cli
         .rpc
         .clone()

@@ -50,6 +50,11 @@ pub struct Cli {
     #[arg(short = 'R', long = "rpc")]
     pub rpc: Option<String>,
 
+    /// ⚙️  Exact config file to load (skips auto-discovery). Also settable via
+    /// $ARIA_CLI_CONFIG.
+    #[arg(short = 'c', long = "config", env = "ARIA_CLI_CONFIG")]
+    pub config: Option<String>,
+
     /// 📋 List all current downloads in Aria2
     #[arg(short = 'l', long = "list")]
     pub list: bool,
